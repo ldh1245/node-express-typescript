@@ -1,0 +1,47 @@
+/members:
+    get:
+        tags:
+            - members
+        summary: 멤버 조회
+        description: 멤버 조회
+        parameters:
+            - in: query
+              name: page
+              type: number
+              example: 1
+              required: true
+            - in: query
+              name: limit
+              type: number
+              example: 5
+              required: true
+        responses:
+            200:
+                description: 성공
+                schema:
+                    type: array
+                    items:
+                        type: string
+            400:
+                description: 잘못된 요청 (page, limit이 누락된 경우)
+                schema:
+                    type: object
+                    properties:
+                        code:
+                            type: number
+                            example: 400
+                        message:
+                            type: string
+                            example: 'Bad request'
+
+            500:
+                description: 서버 에러
+                schema:
+                    type: object
+                    properties:
+                        code:
+                            type: number
+                            example: 500
+                        message:
+                            type: string
+                            example: 'Internal server error'
